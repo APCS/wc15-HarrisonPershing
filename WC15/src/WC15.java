@@ -31,7 +31,7 @@ public class WC15
   public static String centralThree(String letters)
   {
     //TODO: Finish
-    return "no";
+    return letters.substring(letters.length() / 2 - 1, letters.length() / 2 + 2);
   }
 
   /**
@@ -52,7 +52,12 @@ public class WC15
   public static String chopFront(String str)
   {
     //TODO: Finish
-    return "no";
+    String answer = str;
+    if (!(str.substring(1, 2).equals("b")))
+      answer = answer.substring(0, 1) + answer.substring(2);
+    if (!(str.substring(0, 1).equals("a")))
+        answer = answer.substring(1);
+     return answer;
   }
 
   /**
@@ -72,8 +77,12 @@ public class WC15
    */
   public static String hateX(String str)
   {
-    //TODO: Finish
-    return "no";
+    String answer = str;
+    if ((str.substring(1, 2).equals("x")))
+      answer = answer.substring(0, 1) + answer.substring(2);
+    if ((str.substring(0, 1).equals("x")))
+        answer = answer.substring(1);
+     return answer;
   }
 
   /**
@@ -88,6 +97,10 @@ public class WC15
    */
   public static void swapRows(int[][] mat, int rowAIndex, int rowBIndex)
   {
+    int [] holder = mat[rowAIndex];
+    mat[rowAIndex] = mat[rowBIndex];
+    mat[rowBIndex] = holder;
+    
     //TODO: Finish
   }
 
@@ -103,7 +116,16 @@ public class WC15
    */
   public static void swapColumns(int[][] mat, int colAIndex, int colBIndex)
   {
-    //TODO: Finish
+    int [] holder = new int [mat.length];
+    for (int i = 0; i < mat.length; i++)
+    {
+      holder[i] = mat[i][colAIndex];
+    }
+    for (int i = 0; i < mat.length; i++)
+    {
+      mat[i][colAIndex] = mat[i][colBIndex];
+      mat[i][colBIndex] = holder[i];
+    }
   }
 
   /**
@@ -122,8 +144,20 @@ public class WC15
    */
   public static String[][] fill2DWithLetters(String str, int rows, int cols)
   {
+    String [][] answer = new String [rows] [cols];
+    for (int i = 0; i < rows * cols; i++)
+    {
+      if (str.length() > i)
+      {
+        String letter = str.substring(i, i + 1);
+        int r = i / cols;
+        int c = i % cols;
+        System.out.println(r + " " + c + " gets the letter = " + letter);
+        answer[r][c] = letter;
+      }
+    }
     //TODO: Finish
-    return new String[][] {{"42"}};
+    return answer;
   }
 
   /**
